@@ -9,6 +9,8 @@ import java.awt.Rectangle;
 import java.awt.geom.Point2D;
 
 public class GameObject {
+	private static final int DEFAULT_HEALTH=10;
+	
 	private Pixmap myImage;
 	private Location myCenter;
 	private Dimension mySize;  
@@ -18,7 +20,8 @@ public class GameObject {
     private Dimension myOriginalSize;
     private Pixmap myOriginalImage;
     private Rectangle myBounds;
-	
+    private int myHealth= DEFAULT_HEALTH;  
+    
 	public GameObject(Pixmap image, Location center, Dimension size){
 		this(image, center, size, new Vector());
 	}
@@ -31,7 +34,7 @@ public class GameObject {
 	        myOriginalImage = new Pixmap(image);
 	        reset();
 	        resetBounds();
-	    }
+	 }
 	   /**
      * Describes how to "animate" the shape by changing its state.
      * 
@@ -209,5 +212,15 @@ public class GameObject {
         myBounds = new Rectangle((int)getLeft(), (int)getTop(), mySize.width, mySize.height);
     }
 
+	public void reduceHealth(int amount){
+		myHealth-=amount; 
+	}
 	
+	public int getHealth() {
+		return myHealth;
+	}
+	
+	public void setHealth(int amount){
+		myHealth=amount; 
+	}
 }
